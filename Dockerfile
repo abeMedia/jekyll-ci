@@ -7,7 +7,7 @@ ENV PNGOUT_VERSION=20150319 \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl tar git \
-        ruby2.3 ruby2.3-dev gcc \
+        ruby2.3 ruby2.3-dev gcc make \
         nodejs nodejs-legacy npm \
         imagemagick \
     && rm -rf /var/lib/apt/lists/* \
@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV DON_PAGES_VERSION=0.0.1
 RUN gem install don-pages:$DON_PAGES_VERSION
-RUN apt-get purge --auto-remove -y gcc
+RUN apt-get purge --auto-remove -y gcc make
 
 COPY jekyll-ci /bin/jekyll-ci
 
