@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   	&& { \
   		echo 'install: --no-document'; \
   		echo 'update: --no-document'; \
-  	} >> /usr/local/etc/gemrc
+  	} >> /usr/local/etc/gemrc \
 
     && gem install bundler \
 
