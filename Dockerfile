@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-add-repository ppa:brightbox/ruby-ng \
     && apt-get update && apt-get install -y --no-install-recommends \
         curl tar git \
-        ruby2.3 ruby2.3-dev \
+        ruby2.3 ruby2.3-dev libffi \
         nodejs nodejs-legacy npm \
         imagemagick \
     && apt-get purge --auto-remove -y software-properties-common \
