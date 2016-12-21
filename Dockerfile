@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ruby2.3 ruby2.3-dev gcc \
         nodejs nodejs-legacy npm \
         imagemagick \
+    && apt-get purge --auto-remove -y software-properties-common \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g bower svgo \
 
@@ -29,10 +30,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cp -f pngout-$PNGOUT_VERSION-linux/x86_64/pngout /usr/local/bin/pngout \
     && rm -rf pngout-$PNGOUT_VERSION-linux
 
-    && apt-get purge --auto-remove -y gcc software-properties-common \
-
 ENV DON_PAGES_VERSION=0.0.1
 RUN gem install don-pages:$DON_PAGES_VERSION
+RUN apt-get purge --auto-remove -y gcc
 
 COPY jekyll-ci /bin/jekyll-ci
 
