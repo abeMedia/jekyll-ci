@@ -7,7 +7,7 @@ ENV PNGOUT_VERSION=20150319 \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl tar git \
-        ruby2.3 ruby2.3-dev gcc make \
+        ruby2.3 ruby2.3-dev g++ make \
         nodejs nodejs-legacy npm \
         imagemagick \
     && rm -rf /var/lib/apt/lists/* \
