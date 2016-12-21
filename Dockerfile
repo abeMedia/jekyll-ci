@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && npm install -g bower svgo \
 
     # don't install docs
-  	&& echo 'gem: --no-document' >> /usr/local/etc/gemrc \
+    && echo 'gem: --no-document' >> /etc/gemrc \
 
     && gem install bundler \
 
