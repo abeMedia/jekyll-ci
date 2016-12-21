@@ -14,10 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && npm install -g bower svgo \
 
     # don't install docs
-  	&& { \
-  		echo 'install: --no-document'; \
-  		echo 'update: --no-document'; \
-  	} >> /usr/local/etc/gemrc \
+  	&& echo 'gem: --no-document' >> /usr/local/etc/gemrc \
 
     && gem install bundler \
 
@@ -27,8 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf pngout-$PNGOUT_VERSION-linux
 
 ENV DON_PAGES_VERSION=0.0.1
-RUN gem install don-pages:$DON_PAGES_VERSION
-RUN apt-get purge --auto-remove -y gcc make
+RUN gem install don-pages:$DON_PAGES_VERSION \
+    && apt-get purge --auto-remove -y gcc make
 
 COPY jekyll-ci /bin/jekyll-ci
 
