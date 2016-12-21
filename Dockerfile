@@ -6,9 +6,6 @@ ENV PNGOUT_VERSION=20150319 \
     LANG=C.UTF-8
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        software-properties-common \
-    && apt-add-repository ppa:brightbox/ruby-ng \
-    && apt-get update && apt-get install -y --no-install-recommends \
         curl tar git \
         ruby2.3 ruby2.3-dev gcc \
         nodejs nodejs-legacy npm \
