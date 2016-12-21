@@ -5,17 +5,25 @@ ENV PNGOUT_VERSION=20150319 \
     JEKYLL_ENV=production \
     LANG=C.UTF-8
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        software-properties-common \
     && apt-add-repository ppa:brightbox/ruby-ng \
     && apt-get update && apt-get install -y --no-install-recommends \
         curl tar git \
         ruby2.3 ruby2.3-dev \
         nodejs nodejs-legacy npm \
         imagemagick \
-	  && rm -rf /var/lib/apt/lists/* \
-    && apt-get --purge autoremove -y software-properties-common \
+    && apt-get purge --auto-remove -y software-properties-common \
+    && rm -rf /var/lib/apt/lists/* \
     && npm install -g bower svgo \
+
+    # don't install docs
+  	&& { \
+  		echo 'install: --no-document'; \
+  		echo 'update: --no-document'; \
+  	} >> /usr/local/etc/gemrc
+
+    && gem install bundler \
 
     # required for image_optim (as not included in image_optim_pack)
     && curl -s http://static.jonof.id.au/dl/kenutils/pngout-$PNGOUT_VERSION-linux.tar.gz | tar zx \

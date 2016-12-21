@@ -124,7 +124,7 @@ RUN apk add --no-cache --update \
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update && gem clean
 
-RUN  gem install libv8:3.16.14.16 don-pages:$DON_PAGES_VERSION \
+RUN gem install libv8:3.16.14.16 don-pages:$DON_PAGES_VERSION \
     && apk del build-dependencies
 
 COPY jekyll-ci /bin/jekyll-ci
