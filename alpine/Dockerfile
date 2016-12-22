@@ -1,12 +1,12 @@
 FROM alpine:3.4
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ENV JEKYLL_ENV=production \
+ENV DON_PAGES_VERSION=0.0.2 \
+    JEKYLL_ENV=production \
     LANGUAGE=en_GB \
     LANG=en_GB.UTF-8 \
     LC_ALL=en_GB \
     BUNDLE_SILENCE_ROOT_WARNING=1 \
-
     ADVANCECOMP_VERSION=1.20 \
     GIFSICLE_VERSION=1.88 \
     JHEAD_VERSION=3.00 \
@@ -119,9 +119,7 @@ RUN apk add --no-cache --update \
 
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update && gem clean
-
-ENV DON_PAGES_VERSION=0.0.2
-RUN gem install don-pages:$DON_PAGES_VERSION \
+    && gem install don-pages:$DON_PAGES_VERSION \
     && apk del build-dependencies
 
 COPY jekyll-ci /bin/jekyll-ci

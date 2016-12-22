@@ -1,7 +1,8 @@
 FROM ubuntu:xenial
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ENV PNGOUT_VERSION=20150319 \
+ENV DON_PAGES_VERSION=0.0.2 \
+    PNGOUT_VERSION=20150319 \
     JEKYLL_ENV=production \
     LANG=C.UTF-8 \
     BUNDLE_SILENCE_ROOT_WARNING=1
@@ -22,10 +23,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # required for image_optim (as not included in image_optim_pack)
     && curl -s http://static.jonof.id.au/dl/kenutils/pngout-$PNGOUT_VERSION-linux.tar.gz | tar zx \
     && cp -f pngout-$PNGOUT_VERSION-linux/x86_64/pngout /usr/local/bin/pngout \
-    && rm -rf pngout-$PNGOUT_VERSION-linux
+    && rm -rf pngout-$PNGOUT_VERSION-linux \
 
-ENV DON_PAGES_VERSION=0.0.2
-RUN gem install don-pages:$DON_PAGES_VERSION \
+    && gem install don-pages:$DON_PAGES_VERSION \
     && apt-get purge --auto-remove -y g++ make
 
 COPY jekyll-ci /bin/jekyll-ci
