@@ -2,11 +2,6 @@ FROM alpine:3.4
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
 ENV DON_PAGES_VERSION=0.0.2 \
-    JEKYLL_ENV=production \
-    LANGUAGE=en_GB \
-    LANG=en_GB.UTF-8 \
-    LC_ALL=en_GB \
-    BUNDLE_SILENCE_ROOT_WARNING=1 \
     ADVANCECOMP_VERSION=1.20 \
     GIFSICLE_VERSION=1.88 \
     JHEAD_VERSION=3.00 \
@@ -17,7 +12,13 @@ ENV DON_PAGES_VERSION=0.0.2 \
     OPTIPNG_VERSION=0.7.5 \
     PNGCRUSH_VERSION=1.8.10 \
     PNGOUT_VERSION=20150319 \
-    PNGQUANT_VERSION=2.5.2
+    PNGQUANT_VERSION=2.5.2 \
+
+    JEKYLL_ENV=production \
+    LANGUAGE=en_GB \
+    LANG=en_GB.UTF-8 \
+    LC_ALL=en_GB \
+    BUNDLE_SILENCE_ROOT_WARNING=1
 
 RUN apk add --no-cache --update \
         curl ca-certificates git tar \
