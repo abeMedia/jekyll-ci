@@ -3,7 +3,8 @@ MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
 ENV PNGOUT_VERSION=20150319 \
     JEKYLL_ENV=production \
-    LANG=C.UTF-8
+    LANG=C.UTF-8 \
+    BUNDLE_SILENCE_ROOT_WARNING=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl tar git \
