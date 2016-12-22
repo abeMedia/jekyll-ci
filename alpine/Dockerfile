@@ -119,7 +119,7 @@ RUN apk add --no-cache --update \
     && cd .. && rm -rf /tmp/* \
 
     && echo 'gem: --no-document' >> /etc/gemrc \
-    && gem update --system && gem update && gem clean
+    && gem update --system && gem update && gem clean \
     && gem install don-pages:$DON_PAGES_VERSION \
     && apk del build-dependencies
 
