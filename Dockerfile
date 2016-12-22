@@ -16,16 +16,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # don't install docs
     && echo 'gem: --no-document' >> /etc/gemrc \
 
-    && gem install bundler \
+    && gem install bundler image_optim_pack \
 
     # required for image_optim (as not included in image_optim_pack)
     && curl -s http://static.jonof.id.au/dl/kenutils/pngout-$PNGOUT_VERSION-linux.tar.gz | tar zx \
     && cp -f pngout-$PNGOUT_VERSION-linux/x86_64/pngout /usr/local/bin/pngout \
     && rm -rf pngout-$PNGOUT_VERSION-linux
 
-ENV DON_PAGES_VERSION=0.0.1
+ENV DON_PAGES_VERSION=0.0.2
 RUN gem install don-pages:$DON_PAGES_VERSION \
-    && apt-get purge --auto-remove -y gcc make
+    && apt-get purge --auto-remove -y g++ make
 
 COPY jekyll-ci /bin/jekyll-ci
 

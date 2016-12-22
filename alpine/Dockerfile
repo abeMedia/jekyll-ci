@@ -1,8 +1,6 @@
 FROM alpine:3.4
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ARG DON_PAGES_VERSION=0.0.1
-
 ENV JEKYLL_ENV=production \
     LANGUAGE=en_GB \
     LANG=en_GB.UTF-8 \
@@ -35,9 +33,6 @@ RUN apk add --no-cache --update \
 
         # nokogiri
         libxml2-dev libxslt-dev \
-
-        # libv8
-        python subversion \
 
         # jpegoptim
         libjpeg-turbo-dev \
@@ -124,7 +119,8 @@ RUN apk add --no-cache --update \
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update && gem clean
 
-RUN gem install libv8:3.16.14.16 don-pages:$DON_PAGES_VERSION \
+ENV DON_PAGES_VERSION=0.0.2
+RUN gem install don-pages:$DON_PAGES_VERSION \
     && apk del build-dependencies
 
 COPY jekyll-ci /bin/jekyll-ci
