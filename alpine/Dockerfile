@@ -2,6 +2,8 @@ FROM alpine:3.4
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
 ENV DON_PAGES_VERSION=0.0.3 \
+
+    # image_optim dependencies
     ADVANCECOMP_VERSION=1.20 \
     GIFSICLE_VERSION=1.88 \
     JHEAD_VERSION=3.00 \
@@ -14,21 +16,23 @@ ENV DON_PAGES_VERSION=0.0.3 \
     PNGOUT_VERSION=20150319 \
     PNGQUANT_VERSION=2.5.2 \
 
+    # misc
+    BUNDLE_SILENCE_ROOT_WARNING=1 \
+    CI=true \
     JEKYLL_ENV=production \
     LANGUAGE=en_GB \
     LANG=en_GB.UTF-8 \
-    LC_ALL=en_GB \
-    BUNDLE_SILENCE_ROOT_WARNING=1
+    LC_ALL=en_GB
 
 RUN apk add --no-cache --update \
         curl ca-certificates git tar \
-        ruby ruby-bundler ruby-json libffi nodejs imagemagick \
+        ruby ruby-bundler ruby-json libffi imagemagick \
 
         # nokogiri
         libxslt \
 
         # image_optim
-        libjpeg-turbo libpng \
+        nodejs libjpeg-turbo libpng \
 
     && apk add --no-cache --update --virtual build-dependencies \
         build-base bash ruby-dev libffi-dev \
@@ -48,7 +52,9 @@ RUN apk add --no-cache --update \
         # mozjpeg
         pkgconfig autoconf automake libtool nasm \
 
-    && npm install -g bower svgo \
+    && echo 'gem: --no-document' >> /etc/gemrc \
+    && gem update --system && gem update && gem clean \
+    && gem install don-pages:$DON_PAGES_VERSION \
 
     && cd /tmp \
 
@@ -116,12 +122,13 @@ RUN apk add --no-cache --update \
     && ./configure && make && make install \
     && cd .. \
 
-    && cd .. && rm -rf /tmp/* \
+    && cd .. \
 
-    && echo 'gem: --no-document' >> /etc/gemrc \
-    && gem update --system && gem update && gem clean \
-    && gem install don-pages:$DON_PAGES_VERSION \
-    && apk del build-dependencies
+    # svgo
+    && npm install -g svgo \
+
+    # cleanup
+    && apk del build-dependencies && rm -rf /tmp/*
 
 COPY jekyll-ci /bin/jekyll-ci
 
