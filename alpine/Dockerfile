@@ -54,8 +54,7 @@ RUN apk add --no-cache --update \
 
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update && gem clean \
-    && gem sources -​-add https://rails-assets.org \
-    && gem install don-pages:$DON_PAGES_VERSION \
+    && gem install don-pages:$DON_PAGES_VERSION -​-source https://rails-assets.org \
 
     && cd /tmp \
 
