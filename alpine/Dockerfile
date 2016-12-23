@@ -53,9 +53,9 @@ RUN apk add --no-cache --update \
         pkgconfig autoconf automake libtool nasm \
 
     && echo 'gem: --no-document' >> /etc/gemrc \
-    && gem update --system && gem update json bundler && gem clean \
+    && gem update --system && gem update bundler && gem clean \
     && gem install don-pages:$DON_PAGES_VERSION \
-        -- --build-flags -​-source https://rails-assets.org \
+        -- -​-source https://rails-assets.org \
 
     && cd /tmp \
 
