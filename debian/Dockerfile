@@ -1,7 +1,7 @@
 FROM ruby:2.3-slim
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ARG DON_PAGES_VERSION=0.0.3
+ARG DON_PAGES_VERSION=0.0.4
 ARG PNGOUT_VERSION=20150319
 
 ENV JEKYLL_ENV production \
@@ -11,7 +11,7 @@ ENV JEKYLL_ENV production \
 
 RUN apt-get update \
     && apt-get install -y curl git nodejs nodejs-legacy npm imagemagick \
-    && npm install -g bower svgo \
+    && npm install -g svgo \
     && curl -s http://static.jonof.id.au/dl/kenutils/pngout-$PNGOUT_VERSION-linux.tar.gz | tar zx \
     && cp -f pngout-$PNGOUT_VERSION-linux/x86_64/pngout /usr/local/bin/pngout \
     && rm -rf pngout-$PNGOUT_VERSION-linux \
