@@ -56,7 +56,7 @@ RUN apk add --no-cache --update \
 
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update bundler && gem clean \
-    && echo "source 'https://rubygems.org'\ngem 'don-pages', '$DON_PAGES_VERSION'" >> Gemfile \
+    && echo "source 'https://rubygems.org'"\n"gem 'don-pages', '$DON_PAGES_VERSION'" >> Gemfile \
     && bundle install \
 
     # advancecomp
