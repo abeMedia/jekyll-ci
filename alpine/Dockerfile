@@ -54,7 +54,7 @@ RUN apk add --no-cache --update \
 
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update bundler && gem clean \
-    && gem install -s https://rails-assets.org don-pages:$DON_PAGES_VERSION \
+    && gem install --source https://rails-assets.org don-pages:$DON_PAGES_VERSION \
 
     && cd /tmp \
 
