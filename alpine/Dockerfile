@@ -52,12 +52,12 @@ RUN apk add --no-cache --update \
         # mozjpeg
         pkgconfig autoconf automake libtool nasm \
 
+    && cd /tmp \
+
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem update --system && gem update bundler && gem clean \
-    && gem sources --add https://rails-assets.org \
-    && gem install don-pages:$DON_PAGES_VERSION \
-
-    && cd /tmp \
+    && echo "source 'https://rubygems.org'\ngem 'don-pages', '$DON_PAGES_VERSION'" >> Gemfile \
+    && bundle install \
 
     # advancecomp
     && curl -sL https://github.com/amadvance/advancecomp/releases/download/v$ADVANCECOMP_VERSION/advancecomp-$ADVANCECOMP_VERSION.tar.gz | tar zx \
