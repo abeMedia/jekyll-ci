@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ENV DON_PAGES_VERSION=0.0.5 \
+ENV DON_PAGES_VERSION=0.0.6 \
 
     # image_optim dependencies
     ADVANCECOMP_VERSION=1.23 \
