@@ -24,7 +24,8 @@ ENV DON_PAGES_VERSION=0.0.5 \
     LANG=en_GB.UTF-8 \
     LC_ALL=en_GB
 
-RUN apk add --no-cache --update \
+RUN set -ex \
+    && apk add --no-cache --update \
         curl ca-certificates git tar \
         ruby ruby-bundler ruby-json libffi imagemagick \
 
