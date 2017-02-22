@@ -14,7 +14,7 @@ ENV DON_PAGES_VERSION=0.0.6 \
     OPTIPNG_VERSION=0.7.6 \
     PNGCRUSH_VERSION=1.8.11 \
     PNGOUT_VERSION=20150319 \
-    PNGQUANT_VERSION=2.8.0 \
+    PNGQUANT_VERSION=2.8.2 \
 
     # misc
     BUNDLE_SILENCE_ROOT_WARNING=1 \
@@ -119,7 +119,7 @@ RUN set -ex \
     && cd .. \
 
     # pngquant
-    && curl -sL http://pngquant.org/pngquant-$PNGQUANT_VERSION-src.tar.bz2 | tar jx \
+    && curl -sL http://pngquant.org/pngquant-$PNGQUANT_VERSION-src.tar.gz | tar zx \
     && cd pngquant-$PNGQUANT_VERSION \
     && ./configure && make && make install \
     && cd .. \
