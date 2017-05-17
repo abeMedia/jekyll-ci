@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ENV DON_PAGES_VERSION=0.0.4 \
+ENV DON_PAGES_VERSION=0.0.7 \
     PNGOUT_VERSION=20150319 \
     JEKYLL_ENV=production \
     LANG=C.UTF-8 \

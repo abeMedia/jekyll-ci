@@ -1,7 +1,7 @@
 FROM ruby:2.3-slim
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ARG DON_PAGES_VERSION=0.0.4
+ARG DON_PAGES_VERSION=0.0.7
 ARG PNGOUT_VERSION=20150319
 
 ENV JEKYLL_ENV production \

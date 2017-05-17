@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ENV DON_PAGES_VERSION=0.0.6 \
+ENV DON_PAGES_VERSION=0.0.7 \
 
     # image_optim dependencies
     ADVANCECOMP_VERSION=1.23 \
@@ -22,7 +22,8 @@ ENV DON_PAGES_VERSION=0.0.6 \
     JEKYLL_ENV=production \
     LANGUAGE=en_GB \
     LANG=en_GB.UTF-8 \
-    LC_ALL=en_GB
+    LC_ALL=en_GB \
+    NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 
 RUN set -ex \
     && apk add --no-cache --update \
