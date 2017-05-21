@@ -1,13 +1,16 @@
 FROM ruby:2.3-slim
 MAINTAINER Adam Bouqdib <adam@abemedia.co.uk>
 
-ARG DON_PAGES_VERSION=0.0.7
-ARG PNGOUT_VERSION=20150319
+ENV DON_PAGES_VERSION=0.0.7 \
+    PNGOUT_VERSION=20150319 \
 
-ENV JEKYLL_ENV production \
-    LANGUAGE en_GB \
-    LANG en_GB.UTF-8 \
-    LC_ALL en_GB
+    BUNDLE_SILENCE_ROOT_WARNING=1 \
+    CI=true \
+    JEKYLL_ENV=production \
+    LANGUAGE=en_GB \
+    LANG=en_GB.UTF-8 \
+    LC_ALL=en_GB \
+    NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 
 RUN apt-get update \
     && apt-get install -y curl git nodejs nodejs-legacy npm imagemagick \
